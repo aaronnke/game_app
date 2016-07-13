@@ -1,0 +1,33 @@
+
+<!-- Always shows a header, even in smaller screens. -->
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Time Waster</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="">Shark Tank</a>
+        <a class="mdl-navigation__link" href="">Tilt To Live</a>
+        <a class="mdl-navigation__link" href="">Link Five</a>
+        <a class="mdl-navigation__link" href="">Snakes</a>
+      </nav>
+    </div>
+  </header>
+
+	<div id="game-box">
+		<div class="snake" id="snake-tail"></div>
+		<div class="snake" id="snake-body-1"></div>
+		<!-- <div class="snake" id="snake-body-2"></div> -->
+		<div class ="snake" id="snake-head"></div>
+	</div>
+
+	<div id="game-controls">
+		<button id="start-game" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+			  Play
+		</button>
+		<button id="pause-game" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+			  Pause
+		</button>
+	</div>

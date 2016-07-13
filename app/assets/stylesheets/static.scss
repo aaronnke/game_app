@@ -1,0 +1,52 @@
+// Place all the styles related to the static controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#game-box {
+	background-color: black;
+	height: 50vh;
+	width: 50vh;
+	position: absolute;
+	left: 40vw;
+	top: 20vh;
+}
+
+#game-controls {
+	position: absolute;
+	left: 42.5vw;
+	top: 80vh;
+}
+
+#start-game {
+	background-color: #8bc34a;
+	width: 7vw;
+	left: 2vw;
+}
+
+#pause-game {
+	background-color: #ff5722;
+	width: 7vw;
+	left: 2vw;
+}
+
+#snake-head {
+  left: 0;
+  top: 0;
+}
+
+#snake-body-1 {
+	left: 0;
+	top: 0;
+}
+
+#snake-tail {
+  left: 0;
+  top: 0;
+}
+
+.snake {
+	background-color: black;
+	width: 2vh;
+  height: 2vh;
+  position: absolute;
+}
