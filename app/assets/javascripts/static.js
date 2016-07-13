@@ -18,9 +18,34 @@ $(document).ready(function() {
 	});
 
 
+  // function move() {
+  // 	var lastLeft = $("#snake-head").position().left
+  // 	var lastTop = $("#snake-head").position().top
+
+  // 	if (direction === "left") {
+  // 		$('#snake-head').css("left", "-=2vh");
+  // 	}
+  // 	else if (direction === "up") {
+  // 		$('#snake-head').css("top", "-=2vh");
+  // 	}
+  // 	else if (direction === "right") {
+  // 		$('#snake-head').css("left", "+=2vh");
+  // 	}
+  // 	else if (direction === "down") {
+  // 		$('#snake-head').css("top", "+=2vh");
+  // 	}
+  // 	$('#snake-tail').css("left", lastLeft);
+  // 	$('#snake-tail').css("top", lastTop);
+
+  // 	document.getElementById("snake-tail").id = 'snake-body-1'
+  // 	document.getElementById("snake-body-1").id = 'snake-tail'
+  // }
+
   function move() {
-  	var lastLeft = $("#snake-head").position().left
-  	var lastTop = $("#snake-head").position().top
+  	var headLastLeft = $("#snake-head").position().left;
+  	var headLastTop = $("#snake-head").position().top;
+  	var bodyLastLeft = $("#snake-body-1").position().left;
+  	var bodyLastTop = $("#snake-body-1").position().top;
 
   	if (direction === "left") {
   		$('#snake-head').css("left", "-=2vh");
@@ -34,11 +59,11 @@ $(document).ready(function() {
   	else if (direction === "down") {
   		$('#snake-head').css("top", "+=2vh");
   	}
-  	$('#snake-tail').css("left", lastLeft);
-  	$('#snake-tail').css("top", lastTop);
+  	$('#snake-body-1').css("left", headLastLeft);
+  	$('#snake-body-1').css("top", headLastTop);
+  	$('#snake-body-2').css("left", bodyLastLeft);
+  	$('#snake-body-2').css("top", bodyLastTop);
 
-  	document.getElementById("snake-tail").id = 'snake-body-1'
-  	document.getElementById("snake-body-1").id = 'snake-tail'
   }
 
 
