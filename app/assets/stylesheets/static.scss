@@ -4,17 +4,17 @@
 
 #game-box {
 	background-color: black;
-	height: 50vh;
-	width: 50vh;
+	height: 450px;
+	width: 450px;
 	position: absolute;
-	left: 40vw;
-	top: 20vh;
+	left: 500px;
+	top: 100px;
 }
 
 #game-controls {
 	position: absolute;
-	left: 42.5vw;
-	top: 80vh;
+	left: 595px;
+	top: 575px;
 }
 
 #start-game {
@@ -23,30 +23,74 @@
 	left: 2vw;
 }
 
-#pause-game {
-	background-color: #ff5722;
+#restart-game {
+	background-color: #7986cb;
 	width: 7vw;
 	left: 2vw;
 }
 
+#difficulty-controls {
+	position: absolute;
+	left: 550px;
+	top: 625px;
+}
+
+#easy-difficulty {
+	width: 7vw;
+	left: 2vw;
+}
+
+#normal-difficulty {
+	width: 7vw;
+	left: 2vw;
+}
+
+#hard-difficulty {
+	width: 7vw;
+	left: 2vw;
+}
+
+
 .snake {
 	background-color: black;
-	width: 2vh;
-  height: 2vh;
+	width: 15px;
+  height: 15px;
   position: absolute;
+  left: 0;
+  top: 0;
 }
 
-#snake-head {
+#food {
+	background-color: white;
+	position: absolute;
+	width: 15px;
+	height: 15px;
 	left: 0;
 	top: 0;
 }
 
-#snake-body-1 {
-	left: 0;
-	top: 0;
+#score-board {
+	position: absolute;
+	background-color: #ff7043;
+	text-align: center;
+	color: white;
+	left: 1015px;
+	top: 100px;
 }
 
-#snake-body-2 {
-	left: 0;
-	top: 0;
+#pause-noti {
+position: absolute;
+left: 1000px;
+top: 300px;
 }
+
+#super-food-timer {
+	position: absolute;
+	left: 1020px;
+	top: 500px;
+}
+
+.superfood {
+	background-color: red !important;
+}
+
