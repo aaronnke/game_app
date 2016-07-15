@@ -2,7 +2,6 @@ class StaticController < ApplicationController
 	def home
 	end
 
-	def about
-		@msg = "about"
+	def submit_score 
 	end
 end

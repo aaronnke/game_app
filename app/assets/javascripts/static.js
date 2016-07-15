@@ -8,6 +8,14 @@ $(document).ready(function() {
 	superfood = false;
 	superFoodTimer = 0;
 	difficulty = 75;
+	sameGame = false;
+  play = false;
+  paused = false;
+  dead = false;
+  prevPosition = "down";
+  foodValue = 4;
+  superFoodValue = 50;
+
 
   $(document).keydown(function(key) {
     switch(parseInt(key.which,10)) {
@@ -32,11 +40,18 @@ $(document).ready(function() {
 				}
 				break;
 			case 32:
-				clearInterval(gameStart);
-				paused = !paused;
-				play = false;
-    		$("#pause-noti").toggle();
-				break;
+				if (paused === false ) {
+					clearInterval(gameStart);
+					paused = true;
+					play = false;
+	    		$("#pause-noti").toggle();
+					break;
+				}
+				else {
+					paused = false;
+					gameStart = setInterval(move, difficulty);
+					$("#pause-noti").toggle();
+				}
 		}
 	});
 
@@ -55,40 +70,64 @@ $(document).ready(function() {
   		if ($("#snake-head").position().left <= max_left) {
   			clearInterval(gameStart);
   			$("#food").remove();
+  			dead = true;
+  			prevPosition = "down";
   			// $('#food').css("background-color", "black");
   		}
-  		else {
+  		else if (prevPosition !== "right") {
   			$('#snake-head').css("left", "-=15px");
+  			prevPosition = "left";
+  		}
+  		else {
+  			$('#snake-head').css("left", "+=15px");
   		}
   	}
   	else if (direction === "up") {
   		if ($("#snake-head").position().top <= max_top) {
   			clearInterval(gameStart);
   			$("#food").remove();
+  			dead = true;
+  			prevPosition = "down";
   			// $('#food').css("background-color", "black");
   		}
-  		else {
+  		else if (prevPosition !== "down") {
   			$('#snake-head').css("top", "-=15px");
+  			prevPosition = "up";
+  		}
+  		else {
+  			$('#snake-head').css("top", "+=15px");
   		}
   	}
   	else if (direction === "right") {
   		if ($("#snake-head").position().left >= max_right) {
   			clearInterval(gameStart);
   			$("#food").remove();
+  			dead = true;
+  			prevPosition = "down";
   			// $('#food').css("background-color", "black");
   		}
-  		else {
+  		else if (prevPosition !== "left") {
   			$('#snake-head').css("left", "+=15px");
+  			prevPosition = "right";
+  		}
+  		else {
+  			$('#snake-head').css("left", "-=15px");
   		}
   	}
   	else if (direction === "down") {
   		if ($("#snake-head").position().top >= max_bottom) {
   			clearInterval(gameStart);
   			$("#food").remove();
+  			dead = true;
+  			prevPosition = "down";
   			// $('#food').css("background-color", "black");
   		}
-  		else {
+  		else if (prevPosition !== "up") {
   		$('#snake-head').css("top", "+=15px");
+  		prevPosition = "down";
+  		}
+  		else {
+  			$('#snake-head').css("top", "-=15px");
   		}
   	}
   	
@@ -96,22 +135,26 @@ $(document).ready(function() {
 
   	snakeArr = [];
 
-  	wholeSnake.forEach( function(body, index) {
+  	if (dead === false) {
 
-  		if (index != 0 && index != 1) {
+	  	wholeSnake.forEach( function(body, index) {
 
-  			snakeArr.push(body.style);
+	  		if (index != 0 && index != 1) {
 
-  			var target = "#snake-body-" + (index - 1);
-	  		thisLeft = $(target).position().left;
-	  		thisTop = $(target).position().top;
-	  		$(target).css("left", lastLeft);
-	  		$(target).css("top", lastTop);
-	  		lastLeft = thisLeft;
-	  		lastTop = thisTop;
-	  	}
+	  			snakeArr.push(body.style);
 
-	  });
+	  			var target = "#snake-body-" + (index - 1);
+		  		thisLeft = $(target).position().left;
+		  		thisTop = $(target).position().top;
+		  		$(target).css("left", lastLeft);
+		  		$(target).css("top", lastTop);
+		  		lastLeft = thisLeft;
+		  		lastTop = thisTop;
+		  	}
+
+		  });
+
+	  }
 
 	  snakeArr.forEach( function(body) {
 	  	if ((body.top === $("#snake-head").position().top + "px") && (body.left === $("#snake-head").position().left + "px") ) {
@@ -120,9 +163,6 @@ $(document).ready(function() {
 	  	}
 	  });
 
-
-  	newTail = "snake-body-" + (document.getElementById("game-box").childNodes.length - 1);
-  	diffSynNewTail = "#" + newTail;
 
 	  if (($("#snake-head").position().left === $("#food").position().left) && ($("#snake-head").position().top === $("#food").position().top)) {
 	  	if (superfood) {
@@ -133,9 +173,15 @@ $(document).ready(function() {
 	  		$('#super-food-timer').hide();
 	  	}
 	  	else {
-	  	scoreCount += 5;
+	  	scoreCount += foodValue;
 	  	foodCount += 1;
+	  	// clearInterval(gameStart);
+	  	// difficulty -= 20;
+	  	// gameStart = setInterval(move, difficulty);
 	  	}
+
+	  	newTail = "snake-body-" + (document.getElementById("game-box").childNodes.length - 1);
+  		diffSynNewTail = "#" + newTail;
 
 	  	$("#score-count").html(scoreCount);
 	  	$("#game-box").append("<div class=" + "snake " + "id=" + newTail + ">" + "</div>");
@@ -151,26 +197,28 @@ $(document).ready(function() {
 	  		});
 	  	});
 
+	  	// ---------------------------- Causes lag ----------------------------------
+	  	// allValidFoodLocation = allValidFoodLocation.filter( function(value) {
+	  	// 		return !(((value.up) === $("#food").position().top) && ((value.left) === $("#food").position().left));
+	  	// });
+
 	  	var randPos = allValidFoodLocation[Math.floor((Math.random()*allValidFoodLocation.length))]
+
+	  		$('#food').css("top", randPos.up );
+	  		$('#food').css("left", randPos.left );
+
 
 	  	if (foodCount%10 === 0) {
 	  		superfood = true;
-	  		superFoodTimer = 100;
+	  		superFoodTimer = superFoodValue;
 	  		$('#food').toggleClass("superfood");
 	  		$('#super-food-timer').show();
 	  	}
-
-	  	$('#food').css("top", randPos.up );
-	  	$('#food').css("left", randPos.left );
 
 	  }
 
   	
   }
-
-
-  var play = false;
-  var paused = false;
 
   function randPosition () {
   	return String((Math.floor(Math.random()*25)*15))+"px";
@@ -192,19 +240,26 @@ $(document).ready(function() {
   	direction = "down";
   	$("#tutorial").show();
   	$('#super-food-timer').hide();
+  	$("#difficulty-controls").show();
+  	sameGame = false;
+	  foodCount = 1;
+	  dead = false;
   })
 
 
   $('#easy-difficulty').click(function() {
   	difficulty = 100;
+  	foodValue = 3;
   });
 
   $('#normal-difficulty').click(function() {
   	difficulty = 75;
+  	foodValue = 4;
   });
 
   $('#hard-difficulty').click(function() {
   	difficulty = 50;
+  	foodValue = 5;
   });
 
 
@@ -213,6 +268,8 @@ $(document).ready(function() {
 
   $('#start-game').click(function() {
   	$("#tutorial").hide();
+  	$("#difficulty-controls").hide();
+
   	if (play === false && paused === false) {
 			play = true;
 
@@ -246,8 +303,13 @@ $(document).ready(function() {
 	  	rand_color = ["#c5e1a5", "#ffe082", "#4fc3f7", "#f48fb1", "#ef9a9a", "#ce93d8", "#c5cae9", "#80cbc4", "#ffab91", "#fff59d"][Math.floor(Math.random() * 10)];
 	  	$(".snake").css("background-color", rand_color)
 
-	  	$('#food').css("top", randPosition());
-	  	$('#food').css("left", randPosition());
+	  	if (sameGame === false) {
+		  	$('#food').css("top", randPosition());
+		  	$('#food').css("left", randPosition());
+		  }
+
+  	sameGame = true;
+
 
 		  gameStart = setInterval(move, difficulty);
 		}

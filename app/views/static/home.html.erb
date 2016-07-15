@@ -15,8 +15,9 @@
       </nav>
     </div>
   </header>
+
   <div id="test">
-	<div id="game-box"><div id="food"></div><div class ="snake" id="snake-head"></div><div class="snake" id="snake-body-1"></div><div class="snake" id="snake-body-2"></div></div>
+		<div id="game-box"><div id="food"></div><div class ="snake" id="snake-head"></div><div class="snake" id="snake-body-1"></div><div class="snake" id="snake-body-2"></div></div>
 	</div>
 
 	<div id="game-controls">
@@ -27,8 +28,6 @@
 		<button id="restart-game" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
 			  Restart
 		</button>
-
-		
 	</div>
 
 	<div id="difficulty-controls">
@@ -46,9 +45,11 @@
 		</button>
 	</div>
 
-	<button id="score-board" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-  <i id="score-count" class="material-icons">0</i>
+
+<button id="score-board" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+  <span id="score-count"> 0 </span>
 </button>
+
 
 <button id="pause-noti" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
 			  Paused
@@ -79,10 +80,10 @@
     <h2 class="mdl-card__title-text">How To Play</h2>
   </div>
   <div class="mdl-card__supporting-text">
-  	<p>1. Press 'Start'.</p>
+  	<p>1. Select a difficulty then press 'Start'.</p>
   	<p>2. Use your arrow keys to move the snake.</p>
-    <p>3. Eat the food to add points and grow your snake.</p>
-    <p>4. Press your Space Bar to pause / unpause the game. Warning: Food will move!</p>
+    <p>3. Eat food to add points and grow the snake. Superfood comes out every 10 food eaten.</p>
+    <p>4. Press your Space Bar to pause / unpause the game.</p>
     <p>5. Press 'Restart' to start a new game!</p>
   </div>
   <div class="mdl-card__actions mdl-card--border">
@@ -90,4 +91,15 @@
       Start Playing!
     </a>
   </div>
+</div>
+
+
+<div id="leader-board">
+	<h5> High Scores: </h5>
+	<i class="material-icons">directions_bike</i>
+	<p> Jebus: 123  </p>
+	<i class="material-icons">directions_walk</i>
+	<p> Brock: 321  </p>
+	<i class="material-icons">hotel</i>
+	<p> Crap: 334  </p>
 </div>
