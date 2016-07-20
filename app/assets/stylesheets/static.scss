@@ -4,11 +4,11 @@
 
 #game-box {
 	background-color: black;
-	height: 50vh;
-	width: 50vh;
+	height: 375px;
+	width: 375px;
 	position: absolute;
-	left: 40vw;
-	top: 20vh;
+	left: 475px;
+	top: 100px;
 }
 
 #game-controls {
@@ -31,22 +31,22 @@
 
 .snake {
 	background-color: black;
-	width: 2vh;
-  height: 2vh;
-  position: absolute;
+	width: 15px;
+  	height: 15px;
+  	position: absolute;
 }
 
 #snake-head {
-	left: 0;
+	left: 60px;
 	top: 0;
 }
 
 #snake-body-1 {
-	left: 0;
+	left: 40px;
 	top: 0;
 }
 
 #snake-body-2 {
-	left: 0;
+	left: 20px;
 	top: 0;
 }
