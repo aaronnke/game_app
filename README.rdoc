@@ -1,28 +1,15 @@
-== README
+== FEATURES
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A JS version of the classic snake game on Nokia's. Built in my spare time during Week 5 of NEXT Academy's webdev course.
 
-Things you may want to cover:
+<b>Features include:</b>
 
-* Ruby version
+* Snake movement using arrow keys.
 
-* System dependencies
+* Eat food to grow longer
 
-* Configuration
+* Superfood every 10 foods, with bonus points based on timer.
 
-* Database creation
+* Crashing into self or walls equal death.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Restart and pause game.

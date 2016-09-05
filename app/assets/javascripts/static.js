@@ -14,7 +14,7 @@ $(document).ready(function() {
   dead = false;
   prevPosition = "down";
   foodValue = 4;
-  superFoodValue = 50;
+  superFoodValue = 100;
 
 
   $(document).keydown(function(key) {
